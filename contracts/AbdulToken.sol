@@ -3,8 +3,9 @@
 pragma solidity ^0.8.0;
 
 import "./AbdulTokenInterface.sol";
+import "./Ownable.sol";
 
-contract AbdulToken is AbdulTokenInterface {
+contract AbdulToken is Ownable, AbdulTokenInterface {
     mapping(address => uint256) private balances;
 
     mapping(address => mapping(address => uint256)) private allowances;
@@ -91,11 +92,17 @@ contract AbdulToken is AbdulTokenInterface {
         return allowances[owner][spender];
     }
 
-    function balanceOf(address account) public view virtual override returns (uint256) {
+    function balanceOf(address account)
+        public
+        view
+        virtual
+        override
+        returns (uint256)
+    {
         return balances[account];
     }
 
-    function _mint(address account, uint256 amount) internal virtual {
+    function mint(address account, uint256 amount) public virtual onlyOwner() {
         require(account != address(0), "Mint to the zero address");
 
         _totalSupply += amount;
@@ -104,7 +111,7 @@ contract AbdulToken is AbdulTokenInterface {
         emit Transfer(address(0), account, amount);
     }
 
-    function _burn(address account, uint256 amount) internal virtual {
+    function burn(address account, uint256 amount) public virtual onlyOwner() {
         require(account != address(0), "burn from the zero address");
 
         uint256 accountBalance = balances[account];
