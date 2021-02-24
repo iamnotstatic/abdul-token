@@ -28,12 +28,13 @@ contract AbdulToken is TokenInterface {
         _totalSupply = _initialAmount;
     }
 
-    function totalSupply() public view override returns (uint256) {
+    function totalSupply() public virtual view override returns (uint256) {
         return _totalSupply;
     }
 
     function transfer(address recipient, uint256 amount)
         public
+        virtual
         override
         returns (bool)
     {
@@ -49,7 +50,7 @@ contract AbdulToken is TokenInterface {
         address sender,
         address recipient,
         uint256 amount
-    ) external override returns (bool) {
+    ) public virtual override returns (bool) {
         uint256 currentAllowance = allowances[sender][msg.sender];
 
         require(sender != address(0), "transfer from the zero address");
@@ -68,6 +69,7 @@ contract AbdulToken is TokenInterface {
 
     function approve(address spender, uint256 amount)
         public
+        virtual
         override
         returns (bool)
     {
@@ -82,13 +84,14 @@ contract AbdulToken is TokenInterface {
     function allowance(address owner, address spender)
         public
         view
+        virtual
         override
         returns (uint256)
     {
         return allowances[owner][spender];
     }
 
-    function balanceOf(address account) public view override returns (uint256) {
+    function balanceOf(address account) public view virtual override returns (uint256) {
         return balances[account];
     }
 
