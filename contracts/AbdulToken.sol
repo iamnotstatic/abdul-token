@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 
 import "./AbdulTokenInterface.sol";
 
-contract AbdulToken is TokenInterface {
+contract AbdulToken is AbdulTokenInterface {
     mapping(address => uint256) private balances;
 
     mapping(address => mapping(address => uint256)) private allowances;
@@ -28,7 +28,7 @@ contract AbdulToken is TokenInterface {
         _totalSupply = _initialAmount;
     }
 
-    function totalSupply() public virtual view override returns (uint256) {
+    function totalSupply() public view virtual override returns (uint256) {
         return _totalSupply;
     }
 
