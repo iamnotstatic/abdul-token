@@ -4,13 +4,12 @@ const { shouldThrow } = require('./utils');
 contract(AbdulToken, async (accounts) => {
   const [ initialHolder, recipient, anotherAccount ] = accounts;
 
-  const name = 'AbdulToken';
-  const symbol = 'AT';
+  const name = 'Abdul Token';
+  const symbol = 'ALT';
   const initialSupply = 500;
-  const decimal = 2;
 
   beforeEach(async () => {
-    this.token = await AbdulToken.new(name, symbol, decimal, initialSupply);
+    this.token = await AbdulToken.new(initialSupply);
   });
 
   it('has a name', async () => {
