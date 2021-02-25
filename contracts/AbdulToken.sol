@@ -12,19 +12,13 @@ contract AbdulToken is Ownable, AbdulTokenInterface {
 
     uint256 private _totalSupply;
 
-    string public name;
-    uint8 public decimal;
-    string public symbol;
+    string public name = "Abdul Token";
+    uint8 public decimal = 18;
+    string public symbol = "ALT";
 
     constructor(
-        string memory _name,
-        string memory _symbol,
-        uint8 _decimal,
         uint256 _initialAmount
     ) {
-        name = _name;
-        symbol = _symbol;
-        decimal = _decimal;
         balances[msg.sender] = _initialAmount;
         _totalSupply = _initialAmount;
     }
